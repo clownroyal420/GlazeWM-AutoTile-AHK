@@ -4,6 +4,15 @@ A standalone AutoHotkey V2 Script to automatically set tiling split directions b
 - This script assumes you have glazewm.exe in your PATH.
 # Usage
 - Run it standalone, or specify for it to run with GlazeWM in your  GlazeWM `config.yaml` as items under `startup_commands` and `shutdown_commands`
+- Example showing the compiled AHK V2 script saved in user's Downloads folder:
+```
+  startup_commands: [
+    'shell-exec --hide-window %UserProfile%\Downloads\AutoTile.exe'
+    ]
+  shutdown_commands: [
+    'shell-exec --hide-window taskkill /IM AutoTile.exe /F'
+    ]
+```
 # Working Principle
 - Tiling direction is re-evaluated any time the window focus changes.
 - This works via a hook (instead of something like a timer)
