@@ -33,7 +33,7 @@ ShellEvent(wParam, lParam, msg, *) {
             IdealAspectRatio := 1 + ( Scalar - 1 ) * ( AspRatio_Current - AspRatio_Standard ) / AspRatio_Standard
 
             ; Split ratio ought to have a lower limit of 1 (1:1) to better support portrait monitor orientation.
-            IdealAspectRatio := Min(IdealAspectRatio, 1.5)
+            IdealAspectRatio := Min(IdealAspectRatio, Scalar)
 
             ; Split ratio needs an upper limit, or else ultrawide monitors will
             ; have windows that are way too hamburger-style to be practical.
@@ -41,7 +41,7 @@ ShellEvent(wParam, lParam, msg, *) {
 
             ; Tile vertically if the window is wide enough
             direction := windowWidth / 1.5 < windowHeight ? "vertical" : "horizontal"
-            RunWait( EnvGet("LocalAppData") "\glzr.io\glazewm\cli\glazewm.exe command set-tiling-direction " direction ,,"Hide")
+            RunWait( A_ComSpec " /C glazewm.exe command set-tiling-direction " direction ,,"Hide")
         }
     }
 }
